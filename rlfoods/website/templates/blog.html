@@ -1,0 +1,40 @@
+{% extends 'layouts/main.html' %}
+{% load static  breadcrumb %}
+{% block body %}
+{%  breadcrumb  page_detail_title="Blogs"  %}
+
+<!-- Blog Section Begin -->
+<section class="blog spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-7">
+                <div class="row">
+                    {% if blogs %}
+                        {% for blog in blogs %}
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="blog__item">
+                                    <div class="blog__item__pic">
+                                        <img src="{{ blog.photo_url }} " alt="{{ blog.title }}">
+                                    </div>
+                                    <div class="blog__item__text">
+                                        <ul>
+                                            <li><i class="fa fa-calendar-o"></i> {{ blog.published_date | date:'Y-m-d' }} </li>
+                                        </ul>
+                                        <h5><a href="{{ blog.blog_detail_url }}"> {{ blog.title }} </a></h5>
+                                        <p>
+                                            {{ blog.description.html | striptags | truncatewords:25 }}
+                                        </p>
+                                        <a href="{{ blog.blog_detail_url }}" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Section End -->
+{% endblock body %}
+   

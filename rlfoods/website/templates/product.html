@@ -1,0 +1,133 @@
+{% extends 'layouts/main.html' %}
+{% load static  breadcrumb %}
+{% block body %}
+{% breadcrumb  page_detail_title='Products' %}
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-5">
+                <div class="sidebar">
+                    <div class="sidebar__item">
+                        <h4>Categories</h4>
+                        <ul>
+                            {% if product_categories %}
+                                {% for category in product_categories %}
+                                    <li><a href="{{ category.product_filter_by_category_url }}">{{ category.name }}</a></li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                    {% if hot_products %}
+                        <div class="sidebar__item">
+                            <div class="latest-product__text">
+                                <h4>Hot Products</h4>
+                                <div class="latest-product__slider owl-carousel">
+                                    <div class="latest-prdouct__slider__item">
+                                            {% for product in  hot_products %}
+                                                <a href="#" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="{{ product.photo_url }}" alt="">
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>{{ product.name }}</h6>
+                                                    </div>
+                                                </a>
+                                            {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if upcomming_products %}
+                        <div class="sidebar__item">
+                            <div class="latest-product__text">
+                                <h4>Upcomming </h4>
+                                <div class="latest-product__slider owl-carousel">
+                                    <div class="latest-prdouct__slider__item">
+                                            {% for product in upcomming_products %}
+                                                <a href="#" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="{{ product.photo_url }}" alt="{{ product.name }}">
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>{{ product.name }}</h6>
+                                                    </div>
+                                                </a>
+                                            {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-7">
+                <div class="filter__item">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-5">
+                            <div class="filter__sort">
+                                <span>Sort By</span>
+                                <select>
+                                    <option value="0">Default</option>
+                                    <option value="0">Default</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="filter__found">
+                                <h6><span>{{ products.count }}</span> Products found</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    {% if products %} 
+                        {% for product in products %}
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="{{ product.photo_url }}">
+                                    </div>
+                                    <div class="product__item__text">
+                                        <h6><a href="#">{{ product.name }}</a></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                </div>
+                
+                <div class="product__discount">
+                    <div class="section-title product__discount__title">
+                        <h2>Top Categories</h2>
+                    </div>
+                    <div class="row">
+                        <div class="product__discount__slider owl-carousel">
+                           {% if product_categories %}
+                           {% for category in  product_categories%}
+                                <div class="col-lg-4">
+                                    <div class="product__discount__item">
+                                        <div class="product__discount__item__pic set-bg"
+                                            data-setbg="{{ category.photo_url }}">
+                                        </div>
+                                        <div class="product__discount__item__text">
+                                            <h5>{{ category.name  }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Section End -->
+
+{% endblock body %}
+
+    

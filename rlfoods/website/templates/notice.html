@@ -1,0 +1,40 @@
+{% extends 'layouts/main.html' %}
+{% load static  breadcrumb %}
+{% block body %}
+{%  breadcrumb   page_detail_title='Notice' %}
+<section class="blog spad">
+    <div class="container">
+        <div class="row">
+           {% if notices %} 
+              {% for notice in notices %}
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="blog__item">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="blog__item__pic">
+                                        <img src="{{ notice.photo_url }}" alt="{{ notice.title }}">
+                                    </div>
+                                </div>  
+                                <div class="col-lg-8">
+                                    <div class="blog__item__text">
+                                        <ul>
+                                            <li><i class="fa fa-calendar-o"></i> Published Date : {{ notice.published_date | date:'Y-m-d' }}  </li>
+                                        </ul>
+                                        <h5><a href="{{ notice.notice_detail_url }}">{{ notice.title  }}</a></h5>
+                                        <p>
+                                            {{ notice.description.html | striptags | truncatewords:25 }}
+                                        </p>
+                                        
+                                    </div>
+                                </div>          
+                            </div>  
+                        </div>
+                    </div>
+               {% endfor %}
+           {% endif %} 
+        </div>
+    </div>
+</section>
+<!-- Blog Section End -->
+{% endblock body %}
+   

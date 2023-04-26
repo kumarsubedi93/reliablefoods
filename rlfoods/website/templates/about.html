@@ -1,0 +1,21 @@
+{% extends 'layouts/main.html' %}
+{% load static breadcrumb %}
+{% block body %}
+
+{%  breadcrumb  page_detail_title='About' %}
+
+<!-- Blog Details Section Begin -->
+<section class="blog-details padding-top-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 order-md-1 order-1">
+                  {{ about.content.html | safe }}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Details Section End -->
+{% endblock body %}
+
+  
+   
