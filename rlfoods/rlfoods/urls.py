@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-
+from website.views import error_404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,3 +33,5 @@ admin.site.site_header = "Reliable Foods Nepal"
 admin.site.site_title = 'Reliable Foods Nepal'
 admin.site.index_title = 'Reliable Foods Nepal'
 
+
+handler404 = error_404

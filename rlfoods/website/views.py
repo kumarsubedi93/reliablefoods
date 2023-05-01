@@ -78,3 +78,7 @@ def notice(request: HttpRequest) -> HttpResponse:
 
 def notice_detail(request: HttpRequest, slug:str) -> HttpRequest:
     pass
+
+
+def  error_404(request, exception):
+    return render(request, template_name='404.html')
