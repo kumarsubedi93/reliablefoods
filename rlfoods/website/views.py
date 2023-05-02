@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
+from django.shortcuts import get_object_or_404
 from backend.models import Banner, GridBanner, Product, Notice, Feedbacks, ProductCategory, Blog, About
 from django.contrib import messages
 from .form import FeedbackForm
@@ -54,7 +55,10 @@ def blog(request: HttpRequest) -> HttpResponse:
 
 
 def blog_detail(request: HttpRequest, slug) -> HttpResponse:
-    return render(request, template_name='blog-details.html')
+    blog = get_object_or_404(Blog, slug=slug)
+    return render(request, template_name='blog-details.html', context={
+        'blog': blog
+    })
 
 
 def contact(request: HttpRequest) -> HttpResponse:
@@ -77,7 +81,10 @@ def notice(request: HttpRequest) -> HttpResponse:
 
 
 def notice_detail(request: HttpRequest, slug:str) -> HttpRequest:
-    pass
+    notice = get_object_or_404(Notice, slug=slug)
+    return render(request, template_name='notice-detail.html', context={
+        'notice': notice
+    })
 
 
 def  error_404(request, exception):

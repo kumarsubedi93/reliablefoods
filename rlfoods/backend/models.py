@@ -125,6 +125,13 @@ class Blog(models.Model):
     @property
     def blog_detail_url(self):
         return reverse('blog_detail', args=(self.slug, ))
+    
+    @property
+    def tgs(self):
+        tags = self.blogtag_set.all()
+        if tags:
+            return ','.join(tag.tag for tag in tags)
+        return ''
         
 
     @property

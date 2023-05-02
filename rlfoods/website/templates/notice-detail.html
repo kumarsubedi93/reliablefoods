@@ -1,36 +1,31 @@
 {% extends 'layouts/main.html' %}
 {% load static breadcrumb %}
 {% block body %}
-{%  breadcrumb  page_detail_title=blog.title %}
+{%  breadcrumb  page_detail_title='Notice' %}
 <!-- Blog Details Section Begin -->
 <section class="blog-details spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2 col-md-7 order-md-1 order-1">
                 <div class="blog__details__text">
-                    <img src="{{ blog.photo_url }}" alt="{{ blog.title }}">
-                     <h3> {{ blog.title }} </h3> 
-                     {{ blog.description.html | safe }}
+                    <img src="{{ notice.photo_url }}" alt="{{ notice.title }}">
+                     <h3> {{ notice.title }} </h3> 
+                     {{ notice.description.html | safe }}
                 </div>
                 <div class="blog__details__content">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="blog__details__author">
                                 <div class="blog__details__author__pic">
-                                    <img src="{% static 'placeholder/placeholder-blog.jpg' %} " alt="{{ blog.title }}">
+                                    <img src="{% static 'placeholder/placeholder-blog.jpg' %} " alt="{{ notice.title }}">
                                 </div>
                                 <div class="blog__details__author__text">
                                     <h6>Reliable Food & Beverage</h6>
+                                    <ul>
+                                        <li>Published Date : {{ notice.published_date | date:'Y-m-d' }}  </li>
+                                    </ul>
                                     <span>Admin</span>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="blog__details__widget">
-                                <ul>
-                                    <li><span>Categories:</span> Food, Beverage </li>
-                                    <li><span>Tags:</span>  {{ blog.tgs }}  </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -40,8 +35,4 @@
     </div>
 </section>
 <!-- Blog Details Section End -->
-
 {% endblock body %}
-
-  
-   
